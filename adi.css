@@ -1,49 +1,132 @@
-body {
-    background: url('https://github.com/the2ndionizer/coderbeassts/blob/main/Screenshot%20(201).png?raw=true') no-repeat center center fixed;
-    background-size: 800px 800px;
-    background-color: rgba(255, 255, 255, 0.9);
-    background-blend-mode: lighten;
-    margin: 0;
-    padding: 0;
-}
-
-/* Profile Container Fix */
-.profiles-container {
-    display: flex;
-    flex-wrap: wrap; /* Ensures items wrap to the next line if needed */
-    justify-content: center; /* Centers all images horizontally */
-    gap: 20px; /* Adds consistent spacing between items */
-    margin-top: 50px;
-}
-
-/* Individual Profile Styling */
-.profile {
-    display: flex;
-    flex-direction: column; /* Aligns image and text vertically */
-    align-items: center; /* Centers image and text horizontally */
-    text-align: center;
-    max-width: 120px; /* Prevents profiles from stretching */
-}
-
-/* Profile Image */
-.profile img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
+.container {
+    width: 90%;
+    margin: 20px auto;
+    overflow-x: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    border: 2px solid rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease;
+    background: #fff;
+    padding: 10px;
+    position: relative; /* Important for absolute positioning */
 }
 
-/* Hover Effect */
-.profile img:hover {
-    transform: scale(1.1); /* Slight zoom-in effect */
+/* Modern Table */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
 }
 
-/* Profile Text */
-.profile p {
-    margin-top: 8px;
-    font-size: 16px;
+/* Header Styling */
+th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: 600;
+    padding: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #388E3C;
+}
+
+/* Data Cell Styling */
+td {
+    background-color: #f9f9f9;
+    padding: 12px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+/* Hover Effect - Enlarge Row */
+tr:hover {
+    transform: scale(1.05);
+    background-color: #e0f7fa;
+    z-index: 2;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+/* Blur Effect on Non-Hover Rows */
+table:hover tr:not(:hover) {
+    filter: blur(2px);
+    transition: filter 0.3s ease-in-out;
+}
+
+/* Reset Blur When Hovering Anywhere in the Table */
+table:not(:has(tr:hover)) tr {
+    filter: none;
+    transform: none;
+    transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Avatar Styling */
+.image-wrapper {
+    position: relative; /* For absolute positioning of the enlarged image */
+    display: inline-block;
+}
+
+img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #4CAF50;
+    transition: transform 0.4s ease-in-out;
+    z-index: 3;
+}
+
+/* Enlarge Image on Row Hover */
+tr:hover .image-wrapper img {
+    position: absolute;  /* Pull out of the table flow */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(8);  /* Adjust scale for 30% screen width */
+    z-index: 9999;  /* Highest priority */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    transition: transform 0.4s ease-in-out;
+    background: white;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: #4CAF50;
     font-weight: bold;
-    color: black;
-    word-wrap: break-word; /* Pr
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #388E3C;
+    text-decoration: underline;
+}
+
+/* Bold Text for Branch & Language */
+.branch, .language {
+    font-weight: bold;
+    color: #222;
+    font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    table {
+        font-size: 14px;
+    }
+    img {
+        width: 35px;
+        height: 35px;
+    }
+    th, td {
+        padding: 8px;
+    }
+    tr:hover .image-wrapper img {
+        transform: translate(-50%, -50%) scale(4);  /* Adjust scale for mobile view */
+    }
+}
